@@ -10,6 +10,7 @@
       text-white
       sticky
       top-0
+      z-50
     "
   >
   <nuxt-link to="/" class="text-4xl font-bold cursor-pointer text-white">Nuxt Post</nuxt-link>
