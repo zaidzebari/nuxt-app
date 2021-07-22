@@ -21,8 +21,8 @@
         <li><nuxt-link to="/users">Users</nuxt-link></li>
         <li><nuxt-link to="/posts">Posts</nuxt-link></li>
         <li><nuxt-link to="/about">About</nuxt-link></li>
-        <li><nuxt-link to="/about">Login</nuxt-link></li>
-        <li><nuxt-link to="/about">Register</nuxt-link></li>
+        <li><nuxt-link to="/login">Login</nuxt-link></li>
+        <li><nuxt-link to="/register">Register</nuxt-link></li>
       </ul>
     </div>
   </div>
