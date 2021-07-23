@@ -52,7 +52,7 @@
                       REGISTER
                     </h4>
                     <form id="feedbackForm" action="" method="">
-                        <div class="relative w-full mb-3">
+                      <div class="relative w-full mb-3">
                         <label
                           class="
                             block
@@ -64,6 +64,7 @@
                           for="userName"
                           >User Name</label
                         ><input
+                          v-model="form.name"
                           type="text"
                           name="userName"
                           id="userName"
@@ -99,6 +100,7 @@
                           for="email"
                           >Email</label
                         ><input
+                          v-model="form.email"
                           type="email"
                           name="email"
                           id="email"
@@ -134,6 +136,7 @@
                           for="password"
                           >Password</label
                         ><input
+                          v-model="form.password"
                           type="password"
                           name="password"
                           id="password"
@@ -180,14 +183,14 @@
                           "
                           type="submit"
                           style="transition: all 0.15s ease 0s"
+                          @click="submit"
                         >
-                          LOGIN
+                          REGISTER
                         </button>
                       </div>
                     </form>
                     <div class="mt-2">
-                      <small
-                        class="text-black text-center"
+                      <small class="text-black text-center"
                         >Already have an account?</small
                       >
                       <small
@@ -208,9 +211,35 @@
 </template>
 <script>
 export default {
+  data() {
+    return {
+      form: {
+        name: "",
+        email: "",
+        password: "",
+      },
+    };
+  },
   methods: {
     GoToLogin() {
       this.$router.replace({ path: "/login" });
+    },
+    async submit() {
+      try {
+        await this.$axios.post("/register", this.form);
+        const result = await this.$auth.loginWith("laravelSanctum", {
+          data: {
+            email: this.form.email,
+            password: this.form.password,
+          },
+        });
+        if (result) {
+          this.$auth.setUser(result.data);
+          this.$router.push({ path: "/" });
+        }
+      } catch (error) {
+        // this.$router.replace({ path: "/login" });
+      }
     },
   },
 };

@@ -22,25 +22,26 @@
         <li><nuxt-link to="/users">Users</nuxt-link></li>
         <li><nuxt-link to="/posts">Posts</nuxt-link></li>
         <li><nuxt-link to="/about">About</nuxt-link></li>
+    <template v-if="!authenticated">
         <li><nuxt-link to="/login">Login</nuxt-link></li>
         <li><nuxt-link to="/register">Register</nuxt-link></li>
-        <li><nuxt-link to="/register">{{test()}}</nuxt-link></li>
+    </template>
+    <template v-else>
+
+        <li>{{user.data != null ? user.data.name : ''}}</li>
+        <li  class="cursor-pointer" @click.prevent="logout">Logout</li>
+    </template>
       </ul>
-      {{authenticated}}
     </div>
   </div>
 </template>
 <script>
 export default {
   methods: {
-    test() {
-      return this.$auth.user.data?.name;
-    },
-    isLoggedin() {
-      return this.$auth.loggedIn;
+    logout() {
+      this.$auth.logout();
     }
-
-  },
+  }
 };
 </script>
 <style>
