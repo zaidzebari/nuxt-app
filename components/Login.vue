@@ -51,7 +51,7 @@
                     <h4 class="text-2xl mb-6 text-black font-semibold">
                       LOGIN
                     </h4>
-                    <form id="feedbackForm" action="" method="">
+                    <form id="feedbackForm" action="" method="" @submit.prevent="submit">
                       <div class="relative w-full mb-3">
                         <label
                           class="
@@ -64,6 +64,7 @@
                           for="email"
                           >Email</label
                         ><input
+                        v-model.trim.trim="form.email"
                           type="email"
                           name="email"
                           id="email"
@@ -84,6 +85,8 @@
                           placeholder=" "
                           style="transition: all 0.15s ease 0s"
                           required
+                          autofocus
+                          autocomplete="off"
                         />
                         <small class="text-red-600">show error here</small>
                       </div>
@@ -99,6 +102,7 @@
                           for="password"
                           >Password</label
                         ><input
+                        v-model.trim="form.password"
                           type="password"
                           name="password"
                           id="password"
@@ -173,10 +177,29 @@
 </template>
 <script>
 export default {
+  data() {
+    return {
+      form: {
+        email:'',
+        password:''
+      }
+    }
+  },
   methods: {
     GoToRegister() {
       this.$router.replace({ path: "/register" });
     },
+    async submit() {
+    const result = await this.$auth.loginWith("laravelSanctum", {
+        data: this.form
+      });
+      if (result) {
+          console.log(result);
+          this.$auth.setUser(result.data) 
+         this.$router.push({ path: "/" });
+      }
+    
+    }
   },
 };
 </script>

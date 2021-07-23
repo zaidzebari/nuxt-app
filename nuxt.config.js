@@ -44,30 +44,47 @@ export default {
     '@nuxtjs/auth-next',
   ],
   auth: {
+    redirect: {
+      login: '/login',
+      logout: '/',
+      callback: '/login',
+      home: '/'
+    },
     strategies: {
-      local: {
-        token: {
-          property: 'token',
-          global: true,
-          // required: true,
-          // type: 'Bearer'
-        },
-        user: {
-          property: 'user',
-          // autoFetch: true
-        },
+      laravelSanctum: {
+        provider:'laravel/sanctum',
+        url:'http://localhost:8000',
+        // data: {
+        //   property: 'data.meta',
+        //   // global: true,
+        //   // required: true,
+        //   // type: 'Bearer'
+        // },
+        // meta: {
+        //   property:'data.meta'
+        // },
+        // user: {
+        //   property: false,
+        //   autoFetch: true
+        // },
+        user:false,
+        autoFetchUser: false,
+        tokenName: 'Authorization',
+        tokenType: 'Bearer',
+     
         endpoints: {
-          login: { url: '/login', method: 'post', propertyName:"meta.token" },
+          login: { url: '/api/login', method: 'post', propertyName:'meta.token' },
           logout: { url: '/logout', method: 'post' },
-          user: { url: '/user', method: 'get', propertyName:"data" }
+          user : {url: '/api/user', method:'get', propertyName:false}
         }
       }
     }
   },
 
-  axios: {
-    baseURL: "http://127.0.0.1:8000/api"
-  },
+  // axios: {
+  //   baseURL: "http://127.0.0.1:8000/api",
+  //   credentials: false
+  // },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
