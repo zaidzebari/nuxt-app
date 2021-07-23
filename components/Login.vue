@@ -190,14 +190,17 @@ export default {
       this.$router.replace({ path: "/register" });
     },
     async submit() {
-    const result = await this.$auth.loginWith("laravelSanctum", {
+    try {
+      const result = await this.$auth.loginWith("laravelSanctum", {
         data: this.form
       });
       if (result) {
-          console.log(result);
           this.$auth.setUser(result.data) 
          this.$router.push({ path: "/" });
       }
+    } catch (error) {
+      // this.$router.replace({ path: "/login" });
+    }
     
     }
   },

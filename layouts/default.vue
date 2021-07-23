@@ -17,4 +17,7 @@
 //   }
   
 // }
+export default {
+  name: "default"
+}
 </script>

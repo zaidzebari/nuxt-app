@@ -54,28 +54,15 @@ export default {
       laravelSanctum: {
         provider:'laravel/sanctum',
         url:'http://localhost:8000',
-        // data: {
-        //   property: 'data.meta',
-        //   // global: true,
-        //   // required: true,
-        //   // type: 'Bearer'
-        // },
-        // meta: {
-        //   property:'data.meta'
-        // },
-        // user: {
-        //   property: false,
-        //   autoFetch: true
-        // },
-        user:false,
-        autoFetchUser: false,
-        tokenName: 'Authorization',
-        tokenType: 'Bearer',
+        // user:false,
+        // autoFetchUser: false,
+        // tokenName: 'Authorization',
+        // tokenType: 'Bearer',
      
         endpoints: {
-          login: { url: '/api/login', method: 'post', propertyName:'meta.token' },
+          login: { url: '/api/login', method: 'post', propertyName:'data.meta.token' },
           logout: { url: '/logout', method: 'post' },
-          user : {url: '/api/user', method:'get', propertyName:false}
+          user: {url:'/api/user', method:'get', propertyName:'data'}
         }
       }
     }

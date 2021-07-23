@@ -24,12 +24,23 @@
         <li><nuxt-link to="/about">About</nuxt-link></li>
         <li><nuxt-link to="/login">Login</nuxt-link></li>
         <li><nuxt-link to="/register">Register</nuxt-link></li>
+        <li><nuxt-link to="/register">{{test()}}</nuxt-link></li>
       </ul>
     </div>
   </div>
 </template>
 <script>
-export default {};
+export default {
+  methods: {
+    test() {
+      return this.$auth.user.data?.name;
+    },
+    isLoggedin() {
+      return this.$auth.loggedIn;
+    }
+
+  },
+};
 </script>
 <style>
 a.nuxt-link-active:last-child {
