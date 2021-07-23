@@ -26,6 +26,7 @@
         <li><nuxt-link to="/register">Register</nuxt-link></li>
         <li><nuxt-link to="/register">{{test()}}</nuxt-link></li>
       </ul>
+      {{authenticated}}
     </div>
   </div>
 </template>
