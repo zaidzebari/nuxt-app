@@ -188,7 +188,6 @@ export default {
       this.$router.replace({ path: "/register" });
     },
     async submit() {
-      console.log(this.errors);
     try {
       const result = await this.$auth.loginWith("laravelSanctum", {
         data: this.form

@@ -18,6 +18,7 @@
   
 // }
 export default {
-  name: "default"
+  name: "default",
+   middleware : ['auth'],
 }
 </script>
