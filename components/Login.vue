@@ -193,7 +193,7 @@ export default {
         data: this.form
       });
       if (result) {
-          this.$auth.setUser(result.data) 
+          // this.$auth.setUser(result.data) 
          this.$router.push({ path: "/" });
       }
     } catch (error) {
