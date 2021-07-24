@@ -84,7 +84,7 @@
                           "
                           placeholder=" "
                           style="transition: all 0.15s ease 0s"
-                          required
+                          
                         />
                         <small class="text-red-600">show error here</small>
                       </div>
@@ -120,7 +120,7 @@
                           "
                           placeholder=" "
                           style="transition: all 0.15s ease 0s"
-                          required
+                          
                         />
                         <small class="text-red-600">show error here</small>
                       </div>
@@ -156,7 +156,7 @@
                           "
                           placeholder=" "
                           style="transition: all 0.15s ease 0s"
-                          required
+                          
                         />
                         <small class="text-red-600">show error here</small>
                       </div>
@@ -226,20 +226,33 @@ export default {
     },
     async submit() {
       try {
-        await this.$axios.post("/register", this.form);
-        const result = await this.$auth.loginWith("laravelSanctum", {
-          data: {
-            email: this.form.email,
-            password: this.form.password,
-          },
-        });
-        if (result) {
-          this.$auth.setUser(result.data);
-          this.$router.push({ path: "/" });
-        }
+         await this.$axios.$get("sanctum/csrf-cookie");
+        await this.$axios
+          .post("api/register", this.form)
+          .then(function (resp) {
+            console.log(resp);
+          })
+          .catch(function (err) {
+            console.log(err);
+          });
       } catch (error) {
-        // this.$router.replace({ path: "/login" });
+        
       }
+       
+
+        // await this.$axios.get("/sanctum/csrf-cookie");
+        // await this.$axios.post("/api/register", this.form);
+        // const result = await this.$auth.loginWith("laravelSanctum", {
+        //   data: {
+        //     email: this.form.email,
+        //     password: this.form.password,
+        //   },
+        // });
+        // if (result) {
+        //   this.$auth.setUser(result.data);
+        //   this.$router.push({ path: "/" });
+        // }
+        // this.$router.replace({ path: "/login" });
     },
   },
 };
