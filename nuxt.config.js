@@ -81,7 +81,8 @@ export default {
       },
        watchLoggedIn: true,
       rewriteRedirects: false,
-      resetOnError: true
+      resetOnError: true,
+      autoFetchUser: true,
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
