@@ -84,11 +84,10 @@
                           "
                           placeholder=" "
                           style="transition: all 0.15s ease 0s"
-                          required
                           autofocus
                           autocomplete="off"
                         />
-                        <small class="text-red-600">show error here</small>
+                      <small class="text-red-600" v-if="errors && errors.email">{{errors.email[0]}}</small>
                       </div>
                       <div class="relative w-full mb-3">
                         <label
@@ -122,9 +121,8 @@
                           "
                           placeholder=" "
                           style="transition: all 0.15s ease 0s"
-                          required
                         />
-                        <small class="text-red-600">show error here</small>
+                        <small class="text-red-600" v-if="errors && errors.password">{{errors.password[0]}}</small>
                       </div>
                       <div class="text-center mt-6">
                         <button
@@ -190,6 +188,7 @@ export default {
       this.$router.replace({ path: "/register" });
     },
     async submit() {
+      console.log(this.errors);
     try {
       const result = await this.$auth.loginWith("laravelSanctum", {
         data: this.form

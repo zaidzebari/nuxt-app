@@ -86,7 +86,7 @@
                           style="transition: all 0.15s ease 0s"
                           
                         />
-                        <small class="text-red-600">show error here</small>
+                        <small class="text-red-600" v-if="errors && errors.name">{{errors.name[0]}}</small>
                       </div>
                       <div class="relative w-full mb-3">
                         <label
@@ -122,7 +122,7 @@
                           style="transition: all 0.15s ease 0s"
                           
                         />
-                        <small class="text-red-600">show error here</small>
+                        <small class="text-red-600" v-if="errors && errors.email">{{errors.email[0]}}</small>
                       </div>
                       <div class="relative w-full mb-3">
                         <label
@@ -158,7 +158,7 @@
                           style="transition: all 0.15s ease 0s"
                           
                         />
-                        <small class="text-red-600">show error here</small>
+                      <small class="text-red-600" v-if="errors && errors.password">{{errors.password[0]}}</small>
                       </div>
                       <div class="text-center mt-6">
                         <button
