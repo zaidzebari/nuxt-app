@@ -77,11 +77,11 @@ export default {
      redirect: {
         login: '/login',
         logout: '/login',
-        home: '/'
+        // home: '/'
       },
        watchLoggedIn: true,
-      rewriteRedirects: false,
-      resetOnError: true,
+      // rewriteRedirects: false,
+      // resetOnError: true,
       autoFetchUser: true,
   },
 
