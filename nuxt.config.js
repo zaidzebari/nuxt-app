@@ -20,6 +20,11 @@ export default {
   css: [
     '@/assets/styles/main.css'
   ],
+
+  router:{
+    middleware: ['clearValidationErrors']
+  },
+
   pageTransition: {
     name: 'fade',
     mode: 'out-in'
