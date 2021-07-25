@@ -112,6 +112,10 @@ export default {
         async create() {
             try {
               const result = await this.$axios.$post('/api/topics', this.form);
+              if (result) {
+                  this.form.title = '';
+                  this.form.body = '';
+              }
             } catch (error) {
               
             }

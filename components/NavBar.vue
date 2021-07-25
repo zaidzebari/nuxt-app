@@ -20,7 +20,7 @@
       <ul class="space-x-3 flex items-center pr-3">
         <li><nuxt-link to="/">Home</nuxt-link></li>
         <li><nuxt-link to="/users">Users</nuxt-link></li>
-        <li><nuxt-link to="/posts">Posts</nuxt-link></li>
+        <li><nuxt-link to="/topics">Posts</nuxt-link></li>
         <li><nuxt-link to="/about">About</nuxt-link></li>
     <template v-if="!authenticated">
         <li><nuxt-link to="/login">Login</nuxt-link></li>
