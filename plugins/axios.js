@@ -4,7 +4,7 @@ export default function ({$axios, store}) {
             store.dispatch('validation/setErrors',error.response.data.errors);
         }
         return Promise.reject(error);
-        // return Promise.resolve(false);
+        // return Promise.resolve(false); // with this if i pass nothing for login it will login 
     });
 
     $axios.onRequest(() => {

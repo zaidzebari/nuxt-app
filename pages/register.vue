@@ -5,7 +5,8 @@
 <script>
 export default {
     layout: 'none',
-    middleware: ['guest'],
+    middleware: 'guest',
+    auth:'guest',
 
 }
 </script>

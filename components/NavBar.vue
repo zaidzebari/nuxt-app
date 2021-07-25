@@ -28,7 +28,7 @@
     </template>
     <template v-else>
 
-        <li  class="cursor-pointer"><nuxt-link to="/register">{{user.data != null ? user.data.name : ''}}</nuxt-link></li>
+        <li  class="cursor-pointer"><nuxt-link to="/dashboard">{{user.data != null ? user.data.name : ''}}</nuxt-link></li>
         <li  class="cursor-pointer" @click.prevent="logout">Logout</li>
     </template>
       </ul>
