@@ -75,9 +75,9 @@ export default {
      
     } ,
      redirect: {
-        login: '/login',
-        logout: '/login',
-        // home: '/'
+        login: '/login', //when need login go login page
+        logout: '/login', // after logout got login
+        home: '/profile' //after login successful redirect to profile
       },
        watchLoggedIn: true,
       // rewriteRedirects: false,
