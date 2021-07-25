@@ -228,7 +228,7 @@ export default {
     async submit() {
       try {
          await this.$axios.$get("sanctum/csrf-cookie");
-        await this.$axios
+       const result = await this.$axios
           .post("api/register", this.form)
           .then(function (resp) {
             console.log(resp);
@@ -236,6 +236,9 @@ export default {
           .catch(function (err) {
             console.log(err);
           });
+          if (result) {
+             this.$route.push(this.$route.query.redirect || '/dashboard'); // i this not need
+          }
       } catch (error) {
         
       }
