@@ -77,7 +77,7 @@ export default {
      redirect: {
         login: '/login', //when need login go login page
         logout: '/login', // after logout got login
-        home: '/profile' //after login successful redirect to profile
+        home: '/dashboard' //after login successful redirect to dashboard
       },
        watchLoggedIn: true,
       // rewriteRedirects: false,

@@ -194,7 +194,7 @@ export default {
       });
       if (result) {
           // this.$auth.setUser(result.data) 
-         this.$route.push(this.$route.query.redirect || '/profile');
+         this.$route.push(this.$route.query.redirect || '/dashboard'); // i this not need
       }
     } catch (error) {
       // this.$router.replace({ path: "/login" });

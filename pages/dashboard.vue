@@ -1,5 +1,5 @@
 <template>
     <div>
-        this is profile
+       <h2>this is dashboard</h2>
     </div>
 </template>
