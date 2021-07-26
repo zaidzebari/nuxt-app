@@ -1,9 +1,9 @@
 <template>
   <div>
-    <div class="w-full">
-        <div class="my-10 mx-auto text-center py-2 bg-white rounded-md">
-            <h2 class="text-2xl font-bold">Dashboard</h2>
-        </div>
+    <div class="w-full pt-10">
+      <div class="mb-10 mx-auto text-center py-2 bg-white rounded-md">
+        <h2 class="text-2xl font-bold">Topic</h2>
+      </div>
     </div>
     <div class="w-full md:w-2/4 mx-auto mt-10">
       <div
@@ -20,15 +20,15 @@
         "
       >
         <div class="flex-auto p-5 lg:p-10">
-          <h4 class="text-2xl mb-6 text-black font-semibold">Create a new Topic:</h4>
-          <form id="feedbackForm" action="" method="" @submit.prevent="create">
+          <h4 class="text-2xl mb-6 text-black font-semibold">Update Topic:</h4>
+          <form id="feedbackForm" action="" method="" @submit.prevent="update">
             <div class="relative w-full mb-3">
               <label
                 class="block uppercase text-gray-700 text-xs font-bold mb-2"
                 for="title"
                 >Title:</label
               ><input
-              v-model="form.title"
+                v-model="topic.title"
                 type="text"
                 name="title"
                 id="title"
@@ -43,7 +43,6 @@
                   bg-whtie
                   text-gray-800
                   outline-none
-              
                   placeholder-gray-500
                 "
                 placeholder="write topic title"
@@ -52,19 +51,8 @@
                 autocomplete="off"
               />
               <small class="text-red-600" v-if="errors && errors.title">{{
-              errors.title[0]
-            }}</small>
-            </div>
-            <div class="relative w-full mb-3">
-              <label
-                class="block uppercase text-gray-700 text-xs font-bold mb-2"
-                for="body"
-                >Body</label
-              >
-              <textarea v-model="form.body" class="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none" placeholder="write topic body" rows="4"></textarea>
-              <small class="text-red-600" v-if="errors && errors.body">{{
-              errors.body[0]
-            }}</small>
+                errors.title[0]
+              }}</small>
             </div>
             <div class="text-center mt-6">
               <button
@@ -90,37 +78,43 @@
                 type="submit"
                 style="transition: all 0.15s ease 0s"
               >
-                Post
+                Update
               </button>
             </div>
           </form>
         </div>
       </div>
+      <a href="" class="pl-2 underline" @click.prevent="$router.back()"
+        >Go Back</a
+      >
     </div>
   </div>
 </template>
 <script>
 export default {
-    data() {
-        return {
-            form : {
-                title :'', 
-                body  : ''
-            }
-        }
+  data() {
+    return {
+      topic: {
+        title: "",
+      },
+    };
+  },
+  async asyncData({ $axios, params }) {
+    const { data } = await $axios.$get("/api/topics/" + params.id);
+    return {
+      topic: data,
+    };
+  },
+  methods: {
+    async update() {
+      try {
+          await this.$axios.$patch("/api/topics/" + this.$route.params.id, this.topic);
+      } catch (error) {
+          
+      }
+      this.$router.back();
+      console.log("just updated");
     },
-    methods:{
-        async create() {
-            try {
-              const result = await this.$axios.$post('/api/topics', this.form);
-              if (result) {
-                  this.form.title = '';
-                  this.form.body = '';
-              }
-            } catch (error) {
-              
-            }
-        }
-    },
-}
+  },
+};
 </script>

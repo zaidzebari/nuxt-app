@@ -5,7 +5,7 @@
       <Nuxt />
     </div>
     <div class="flex justify-center bg-indigo-400 text-white py-3">
-      here is footer
+      Here is footer
     </div>
   </div>
 </template>
