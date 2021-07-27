@@ -119,7 +119,11 @@ export default {
     };
   },
   async asyncData({ $axios }) {
-    const { data, links } = await $axios.$get("/api/topics");
+    try {
+      const { data, links } = await $axios.$get("/api/topics");
+    } catch (error) {
+      
+    }
     //    const {data} = await $axios.$get('/api/topics'); this if only we want data
     // console.log(response);
     return {
