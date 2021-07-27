@@ -55,8 +55,31 @@
         :key="index"
         class="ml-10 mt-4"
       >
-        <div class="text-xl font-bold uppercase text-blue-600">
-          {{ content.body }}
+        <div class="flex justify-between flex-row">
+          <div class="text-xl font-bold uppercase text-blue-600">
+            {{ content.body }}
+          </div>
+          <div class="flex-none flex justify-between">
+            <span
+              ><button
+                @click="likePost(topic.id, content)"
+                class="
+                  fa fa-thumbs-up
+                  border
+                  text-blue-600
+                  hover:bg-blue-600
+                  hover:text-white
+                  border-blue-600
+                  text-center
+                  py-1
+                  px-2
+                  rounded
+                "
+              >
+                <span class="mx-2">{{ content.like_count }}</span>
+              </button>
+            </span>
+          </div>
         </div>
         <p class="text-gray-500 text-xs">
           {{ content.created_at }} by {{ content.user.name }}
@@ -114,14 +137,44 @@ export default {
     },
     async remove(id) {
       try {
-        if (confirm('are sure to delete?')) {
+        if (confirm("are sure to delete?")) {
           await this.$axios.$delete("api/topics/" + id);
-        this.topics = this.topics.filter((item) => {
-          return item.id != id;
-        });
+          this.topics = this.topics.filter((item) => {
+            return item.id != id;
+          });
         }
       } catch (error) {}
       console.log(id);
+    },
+    async likePost(topicId, post) {
+      const userFromVuex = this.$store.getters["user"];
+      if (userFromVuex) {
+        //this is for post own like
+        if (userFromVuex.data.id == post.user.id) {
+          alert("You can not like your own post");
+          return;
+        }
+        //if user has already liked
+        if (post.users) {
+          if (post.users.some((user) => user.id == userFromVuex.data.id)) {
+            alert("you have already liked this post");
+            return;
+          } else {
+            // now send request
+            await this.$axios.$post(
+              "api/topics/" + topicId + "/posts/" + post.id + "/likes"
+            );
+            const { data, links } = await this.$axios.$get("/api/topics");
+            this.topics = data;
+            this.links = links;
+          }
+        }
+      } else {
+        alert("you are not logged in");
+        this.$router.push("/login");
+      }
+      console.log(userFromVuex);
+      //  await this.$axios.$post("api/topics/" + id);
     },
   },
 };
