@@ -51,29 +51,31 @@ export default {
   
   axios: {
     credentials: true,
-    baseURL: "http://localhost:8000", //http://192.168.1.11,
+    baseURL: "http://localhost/webpost/public" //"http://localhost:8000", //http://192.168.1.11,
   },
   auth: {
     strategies: {
       laravelSanctum: {
 
         provider:'laravel/sanctum',
-        url:'http://localhost:8000',
+        url:'http://localhost/webpost/public', //this solved, from laravel session_domain i was set localhost, here also domain should be localhost
         // user:false,
         // autoFetchUser: false,
         // tokenName: 'Authorization',
         // tokenType: 'Bearer',
-     
-        endpoints: {
-          login: { url: '/api/login', method: 'post', propertyName:'meta.token' },
-          logout: { url: '/api/logout', method: 'post' },
-          user: {url:'/api/user', method:'get', propertyName:'data'}
+        user: {
+          property: 'data'
         },
-         
+        token: {
+          property: 'meta.token',
+          global: true,
+        },
+        endpoints: {
+          login: { url: '/api/login', method: 'post' },
+          logout: { url: '/api/logout', method: 'post' },
+          user: {url:'/api/user', method:'get'}
+        },
       },
-     
-    
-     
     } ,
      redirect: {
         login: '/login', //when need login go login page
@@ -84,6 +86,7 @@ export default {
       // rewriteRedirects: false,
       // resetOnError: true,
       autoFetchUser: true,
+      // localStorage : true,
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
