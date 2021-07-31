@@ -228,7 +228,7 @@ export default {
       try {
          await this.$axios.$get("sanctum/csrf-cookie");
        const result = await this.$axios
-          .post("api/register", this.form)
+          .post("/webpost/publicapi/register", this.form)
           .then(function (resp) {
             console.log(resp);
           })
@@ -242,7 +242,6 @@ export default {
         
       }
        
-
         // await this.$axios.get("/sanctum/csrf-cookie");
         // await this.$axios.post("/api/register", this.form);
         // const result = await this.$auth.loginWith("laravelSanctum", {
