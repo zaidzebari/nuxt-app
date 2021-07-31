@@ -84,9 +84,12 @@
                           "
                           placeholder=" "
                           style="transition: all 0.15s ease 0s"
-                          
                         />
-                        <small class="text-red-600" v-if="errors && errors.name">{{errors.name[0]}}</small>
+                        <small
+                          class="text-red-600"
+                          v-if="errors && errors.name"
+                          >{{ errors.name[0] }}</small
+                        >
                       </div>
                       <div class="relative w-full mb-3">
                         <label
@@ -120,9 +123,12 @@
                           "
                           placeholder=" "
                           style="transition: all 0.15s ease 0s"
-                          
                         />
-                        <small class="text-red-600" v-if="errors && errors.email">{{errors.email[0]}}</small>
+                        <small
+                          class="text-red-600"
+                          v-if="errors && errors.email"
+                          >{{ errors.email[0] }}</small
+                        >
                       </div>
                       <div class="relative w-full mb-3">
                         <label
@@ -156,9 +162,12 @@
                           "
                           placeholder=" "
                           style="transition: all 0.15s ease 0s"
-                          
                         />
-                      <small class="text-red-600" v-if="errors && errors.password">{{errors.password[0]}}</small>
+                        <small
+                          class="text-red-600"
+                          v-if="errors && errors.password"
+                          >{{ errors.password[0] }}</small
+                        >
                       </div>
                       <div class="text-center mt-6">
                         <button
@@ -214,7 +223,7 @@ export default {
   data() {
     return {
       form: {
-        name: "",
+        myName: "",
         email: "",
         password: "",
       },
@@ -226,35 +235,30 @@ export default {
     },
     async submit() {
       try {
-         await this.$axios.$get("sanctum/csrf-cookie");
-       const result = await this.$axios
-          .post("/webpost/publicapi/register", this.form)
-          .then(function (resp) {
-            console.log(resp);
-          })
-          .catch(function (err) {
-            console.log(err);
-          });
-          if (result) {
-             this.$route.push(this.$route.query.redirect || '/dashboard'); // i this not need
-          }
-      } catch (error) {
-        
-      }
-       
-        // await this.$axios.get("/sanctum/csrf-cookie");
-        // await this.$axios.post("/api/register", this.form);
-        // const result = await this.$auth.loginWith("laravelSanctum", {
-        //   data: {
-        //     email: this.form.email,
-        //     password: this.form.password,
-        //   },
-        // });
-        // if (result) {
-        //   this.$auth.setUser(result.data);
-        //   this.$router.push({ path: "/" });
-        // }
-        // this.$router.replace({ path: "/login" });
+        //  await this.$axios.$get("sanctum/csrf-cookie");
+        const result = await this.$axios.post("/api/register", this.form)
+        if (result) { 
+          
+          await this.$auth.loginWith("laravelSanctum", {
+              data: this.form,
+            });
+          this.$route.push(this.$route.query.redirect || "/dashboard"); // i this not need
+        }
+      } catch (error) {}
+
+      // await this.$axios.get("/sanctum/csrf-cookie");
+      // await this.$axios.post("/api/register", this.form);
+      // const result = await this.$auth.loginWith("laravelSanctum", {
+      //   data: {
+      //     email: this.form.email,
+      //     password: this.form.password,
+      //   },
+      // });
+      // if (result) {
+      //   this.$auth.setUser(result.data);
+      //   this.$router.push({ path: "/" });
+      // }
+      // this.$router.replace({ path: "/login" });
     },
   },
 };

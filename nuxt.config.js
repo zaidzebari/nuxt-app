@@ -63,17 +63,17 @@ export default {
         // autoFetchUser: false,
         // tokenName: 'Authorization',
         // tokenType: 'Bearer',
-        user: {
-          property: 'data'
-        },
-        token: {
-          property: 'meta.token',
-          global: true,
-        },
+        // user: {
+        //   property: 'data'
+        // },
+        // token: {
+        //   property: 'meta.token',
+        //   global: true,
+        // },
         endpoints: {
-          login: { url: '/api/login', method: 'post' },
+          login: { url: '/api/login', method: 'post', property: 'meta.token'},
           logout: { url: '/api/logout', method: 'post' },
-          user: {url:'/api/user', method:'get'}
+          user: {url:'/api/user', method:'get', property:'data'}
         },
       },
     } ,
