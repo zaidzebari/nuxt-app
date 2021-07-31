@@ -1,8 +1,8 @@
 <template>
   <div>
     <div class="w-full">
-        <div class="my-10 mx-auto text-center py-2 bg-white rounded-md">
-            <h2 class="text-2xl font-bold">Dashboard</h2>
+        <div class="my-10 mx-auto text-center py-2 bg-white dark:bg-gray-900 rounded-md">
+            <h2 class="text-2xl font-bold  dark:text-white">Dashboard</h2>
         </div>
     </div>
     <div class="w-full md:w-2/4 mx-auto mt-10">
@@ -17,14 +17,15 @@
           shadow-lg
           rounded-lg
           bg-white
+          dark:bg-gray-900
         "
       >
         <div class="flex-auto p-5 lg:p-10">
-          <h4 class="text-2xl mb-6 text-black font-semibold">Create a new Topic:</h4>
+          <h4 class="text-2xl mb-6 text-black font-semibold dark:text-white">Create a new Topic:</h4>
           <form id="feedbackForm" action="" method="" @submit.prevent="create">
             <div class="relative w-full mb-3">
               <label
-                class="block uppercase text-gray-700 text-xs font-bold mb-2"
+                class="block uppercase text-gray-700 dark:text-white text-xs font-bold mb-2"
                 for="title"
                 >Title:</label
               ><input
@@ -57,7 +58,7 @@
             </div>
             <div class="relative w-full mb-3">
               <label
-                class="block uppercase text-gray-700 text-xs font-bold mb-2"
+                class="block uppercase text-gray-700 text-xs font-bold mb-2 dark:text-white"
                 for="body"
                 >Body</label
               >

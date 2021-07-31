@@ -1,17 +1,7 @@
 <template>
-  <div
-    class="
-      flex flex-row
-      justify-between
-      items-center
-      pl-4
-      py-2
-      bg-indigo-700
-      text-white
-      sticky
-      top-0
-      z-50
-    "
+ <div>
+    <div
+    class="flex flex-row justify-between items-center pl-4 py-2 bg-indigo-700 dark:bg-black text-white sticky top-0 z-50"
   >
   <nuxt-link to="/" class="text-4xl font-bold cursor-pointer text-white">Nuxt Post</nuxt-link>
 
@@ -34,6 +24,7 @@
       </ul>
     </div>
   </div>
+ </div>
 </template>
 <script>
 export default {

@@ -1,13 +1,13 @@
 <template>
   <div class="pt-3">
     <div
-      class="p-4 bg-white mt-2 rounded border-l-2 border-solid border-gray-900"
+      class="p-4 bg-white mt-2 rounded dark:bg-gray-900 border-l-2 border-solid border-gray-900"
     >
-      <h2 class="text-2xl font-bold mb-2 uppercase">
+      <h2 class="text-2xl font-bold mb-2 uppercase dark:text-white">
         {{ topic.title }}
       </h2>
 
-      <p class="text-gray-600 text-xs">
+      <p class="text-gray-600 text-xs ">
         {{ topic.created_at }} by {{ topic.user.name }}
       </p>
       <hr />
@@ -54,13 +54,13 @@
           ></button>
         </div>
 
-        <div class="text-xl font-bold">{{ content.body }}</div>
+        <div class="text-xl font-bold dark:text-white">{{ content.body }}</div>
         <p class="text-gray-500 text-xs">
           {{ content.created_at }} by {{ content.user.name }}
         </p>
       </div>
     </div>
-    <a href="" class="pl-2 underline" @click.prevent="$router.back()"
+    <a href="" class="pl-2 underline dark:text-white" @click.prevent="$router.back()"
       >Go Back</a
     >
 
@@ -77,14 +77,15 @@
           shadow-lg
           rounded-lg
           bg-white
+          dark:bg-gray-900
         "
       >
         <div class="flex-auto p-5 lg:p-10">
-          <h4 class="text-2xl mb-6 text-black font-semibold">Add Post:</h4>
+          <h4 class="text-2xl mb-6 text-black font-semibold dark:text-white">Add Post:</h4>
           <form id="feedbackForm" action="" method="" @submit.prevent="addPost">
             <div class="relative w-full mb-3">
               <label
-                class="block uppercase text-gray-700 text-xs font-bold mb-2"
+                class="block uppercase text-gray-700 text-xs font-bold mb-2 dark:text-white"
                 for="title"
                 >Body:</label
               >

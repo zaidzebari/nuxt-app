@@ -3,9 +3,9 @@
     <div
       v-for="(topic, index) in topics"
       :key="index"
-      class="p-4 bg-white m-3 rounded border-l-2 border-solid border-gray-900"
+      class="p-4 bg-white dark:bg-gray-900 m-3 rounded border-l-2 border-solid border-gray-900"
     >
-      <h2 class="text-2xl font-bold mb-2 hover:underline">
+      <h2 class="text-2xl dark:text-white font-bold mb-2 hover:underline">
         <nuxt-link :to="{ name: 'topics-id', params: { id: topic.id } }">{{
           topic.title
         }}</nuxt-link>

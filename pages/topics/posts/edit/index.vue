@@ -2,8 +2,8 @@
     <div>
      
 <div class="w-full pt-10">
-      <div class="mb-10 mx-auto text-center py-2 bg-white rounded-md">
-        <h2 class="text-2xl font-bold">Post</h2>
+      <div class="mb-10 mx-auto text-center py-2 bg-white dark:bg-gray-900 rounded-md">
+        <h2 class="text-2xl font-bold dark:text-white">Post</h2>
       </div>
     </div>
          <div class="w-full mx-auto mt-10">
@@ -18,11 +18,12 @@
           shadow-lg
           rounded-lg
           bg-white
+          dark:bg-gray-900
         "
       >
       
         <div class="flex-auto p-5 lg:p-10">
-          <h4 class="text-2xl mb-6 text-black font-semibold">Update Post:</h4>
+          <h4 class="text-2xl mb-6 text-black font-semibold dark:text-white">Update Post:</h4>
           <form id="feedbackForm" action="" method="" @submit.prevent="updatePost">
             <div class="relative w-full mb-3">
               <label
@@ -69,7 +70,7 @@
           </form>
         </div>
       </div>
-       <a href="" class="pl-2 underline" @click.prevent="$router.back()"
+       <a href="" class="pl-2 underline dark:text-white" @click.prevent="$router.back()"
         >Go Back</a
       >
     </div>
