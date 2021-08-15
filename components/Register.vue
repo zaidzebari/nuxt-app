@@ -223,28 +223,48 @@ export default {
   data() {
     return {
       form: {
-        myName: "",
+        name: "",
         email: "",
         password: "",
       },
     };
   },
+  mounted() {
+    this.getCookie();
+  },
   methods: {
     GoToLogin() {
       this.$router.replace({ path: "/login" });
     },
+    async getCookie() {
+   
+      // await this.$axios.get('sanctum/csrf-cookie');
+    },
     async submit() {
       try {
-        //  await this.$axios.$get("sanctum/csrf-cookie");
-        const result = await this.$axios.post("/api/register", this.form)
+         await this.$axios.get('sanctum/csrf-cookie');
+        const result =   await this.$axios.post('/api/register', {
+            name: this.form.password,
+            email: this.form.email,
+          }).then(function (resp) {
+            console.log('response ', resp);
+            return resp;
+          }).catch(function (err) {
+            if (err.response.status = 422) {
+              errors = err.response.data.errors;
+            }
+          });
         if (result) { 
-          
+          console.log('goto login for this');
           await this.$auth.loginWith("laravelSanctum", {
               data: this.form,
             });
           this.$route.push(this.$route.query.redirect || "/dashboard"); // i this not need
         }
-      } catch (error) {}
+        console.log('all done', result);
+      } catch (error) {
+        console.log(error);
+      }
 
       // await this.$axios.get("/sanctum/csrf-cookie");
       // await this.$axios.post("/api/register", this.form);
